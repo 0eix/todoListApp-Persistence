@@ -1,6 +1,5 @@
 package com.konaesan.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiServiceExporter;
@@ -9,8 +8,11 @@ import org.springframework.remoting.support.RemoteExporter;
 @Configuration
 public class Config
 {
-    @Autowired
-    TaskService taskServiceImpl;
+    private final TaskService taskServiceImpl;
+
+    public Config(TaskService taskServiceImpl) {
+        this.taskServiceImpl = taskServiceImpl;
+    }
 
     @Bean
     RemoteExporter registerRMIExporter() {
